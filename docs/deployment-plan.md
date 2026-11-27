@@ -1,7 +1,8 @@
 # Deployment plan
 
-1. Create DynamoDB table Loans (partition key loanId, String, on-demand capacity).
-2. Create Lambda function loan-handler (Python 3.12) using the existing LabRole.
-3. Create an HTTP API in API Gateway with routes POST /loans, GET /loans, PUT /loans/{id}, DELETE /loans/{id} integrated with the Lambda function.
-4. Test each route with curl and save the outputs as evidence.
-5. Cost control: on-demand DynamoDB, 128 MB Lambda, delete resources after grading.
+1. Build the Docker image locally from app/Dockerfile (docker build -t loan-tracker:v1 app).
+2. Create a private ECR repository named loan-tracker.
+3. Launch one EC2 instance (t3.micro, Amazon Linux) with a security group that allows HTTP on port 80.
+4. Install Docker on the instance and run a container, then test connectivity with curl against the public IP.
+5. Later: push the image to ECR, pull and run it on EC2, and implement the four CRUD endpoints.
+6. Cost control: one small instance, terminate it after testing.
