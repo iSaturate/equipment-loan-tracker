@@ -1,15 +1,14 @@
-# Equipment Loan Tracker (Serverless on AWS)
+# Equipment Loan Tracker (Containers on AWS)
 
-Individual Cloud Computing project - Track C (Serverless) on AWS Learner Lab.
+Individual Cloud Computing project - Track B (EC2 + Docker + ECR), AWS Academy lab.
 
 ## Use case
 A small API to record lab equipment loans: borrow, list, update (for example mark returned) and delete loans.
 
 ## Architecture
-Client to API Gateway (HTTP API) to Lambda (Python 3.12) to DynamoDB. Lambda runs with LabRole and writes logs to CloudWatch.
-Diagram: docs/architecture.png
+Client to an EC2 instance running a Docker container. The image is built from app/Dockerfile and stored in Amazon ECR. Diagram: docs/architecture.png
 
-## Endpoints
+## Planned endpoints
 - POST /loans - create a loan
 - GET /loans - list loans
 - PUT /loans/{id} - update a loan
@@ -19,4 +18,4 @@ Diagram: docs/architecture.png
 See docs/deployment-plan.md
 
 ## Status
-Week 12: design and AWS setup in progress.
+Week 12: design done, Docker image built locally, EC2 and ECR provisioned and tested.
